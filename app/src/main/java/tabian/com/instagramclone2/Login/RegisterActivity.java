@@ -1,6 +1,7 @@
 package tabian.com.instagramclone2.Login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import tabian.com.instagramclone2.Home.HomeActivity;
 import tabian.com.instagramclone2.R;
 import tabian.com.instagramclone2.Utils.FirebaseMethods;
 import tabian.com.instagramclone2.models.User;
@@ -39,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mEmail, mPassword, mUsername;
     private TextView loadingPleaseWait;
     private Button btnRegister;
+    private Button btnBack;
     private ProgressBar mProgressBar;
 
     //firebase
@@ -60,13 +63,19 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started.");
 
         initWidgets();
-        Log.d(TAG, "after: initWidgets.");
         setupFirebaseAuth();
-        Log.d(TAG, "after: setupFirebaseAuth.");
         init();
     }
 
     private void init(){
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "Back from register to login.");
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.input_email);
         mUsername = (EditText) findViewById(R.id.input_username);
         btnRegister = (Button) findViewById(R.id.btn_register);
+        btnBack = (Button) findViewById(R.id.btn_register_back);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         loadingPleaseWait = (TextView) findViewById(R.id.loadingPleaseWait);
         mPassword = (EditText) findViewById(R.id.input_password);
