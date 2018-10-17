@@ -34,10 +34,6 @@ import tabian.com.instagramclone2.Utils.BottomNavigationViewHelper;
 import tabian.com.instagramclone2.Utils.UserListAdapter;
 import tabian.com.instagramclone2.models.User;
 
-/**
- * Created by User on 5/28/2017.
- */
-
 public class SearchActivity extends AppCompatActivity{
     private static final String TAG = "SearchActivity";
     private static final int ACTIVITY_NUM = 1;
@@ -98,8 +94,7 @@ public class SearchActivity extends AppCompatActivity{
 
         }else{
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            Query query = reference.child(getString(R.string.dbname_users))
-                    .orderByChild(getString(R.string.field_username)).equalTo(keyword);
+            Query query = reference.child("users").orderByChild(getString(R.string.field_username)).equalTo(keyword);
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
