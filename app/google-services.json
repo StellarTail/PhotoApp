@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "92034808130",
+    "firebase_url": "https://instagram-xmf.firebaseio.com",
+    "project_id": "instagram-xmf",
+    "storage_bucket": "instagram-xmf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92034808130:android:c131b23f0c41b226",
+        "android_client_info": {
+          "package_name": "com.xmf.BurtBee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92034808130-061u29s87co5akssig09ps8j0ro9u5j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK7l3O68EsBjJLYNf60FFkZPVNuq3AG-I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
