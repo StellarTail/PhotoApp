@@ -556,19 +556,10 @@ public class FirebaseMethods {
 
                             userID = mAuth.getCurrentUser().getUid();
                             Log.d(TAG, "onComplete: Authstate changed: " + userID);
-                            long phone = 123456789;
-                            Log.d(TAG, "Username: " + username);
-                            writeNewUser(userID, username, email, phone);
                         }
 
                     }
                 });
-    }
-
-    private void writeNewUser(String userId, String name, String email, long phone_number) {
-        User user = new User(userId, phone_number, email, name);
-
-        myRef.child("users").child(userId).setValue(user);
     }
 
     public void sendVerificationEmail(){
@@ -600,7 +591,7 @@ public class FirebaseMethods {
      */
     public void addNewUser(String email, String username, String description, String website, String profile_photo){
 
-        User user = new User( userID,  1,  email,  StringManipulation.condenseUsername(username) );
+        User user = new User( userID,  123456789,  email,  StringManipulation.condenseUsername(username) );
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
