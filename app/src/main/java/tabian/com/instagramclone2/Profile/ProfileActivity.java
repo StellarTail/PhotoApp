@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,10 +20,6 @@ import tabian.com.instagramclone2.Utils.ViewPostFragment;
 import tabian.com.instagramclone2.Utils.ViewProfileFragment;
 import tabian.com.instagramclone2.models.Photo;
 import tabian.com.instagramclone2.models.User;
-
-/**
- * Created by User on 5/28/2017.
- */
 
 public class ProfileActivity extends AppCompatActivity implements
         ProfileFragment.OnGridImageSelectedListener ,
@@ -61,7 +58,6 @@ public class ProfileActivity extends AppCompatActivity implements
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(getString(R.string.view_post_fragment));
         transaction.commit();
-
     }
 
 
@@ -101,17 +97,13 @@ public class ProfileActivity extends AppCompatActivity implements
                             intent.getParcelableExtra(getString(R.string.intent_user)));
                     fragment.setArguments(args);
 
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.container, fragment);
-                    transaction.addToBackStack(getString(R.string.view_profile_fragment));
-                    transaction.commit();
+                    String str = "ViewProfile";
+                    fragmentTransaction(fragment, str);
                 }else{
                     Log.d(TAG, "init: inflating Profile");
                     ProfileFragment fragment = new ProfileFragment();
-                    FragmentTransaction transaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.container, fragment);
-                    transaction.addToBackStack(getString(R.string.profile_fragment));
-                    transaction.commit();
+                    String str = "Profile";
+                    fragmentTransaction(fragment, str);
                 }
             }else{
                 Toast.makeText(mContext, "something went wrong", Toast.LENGTH_SHORT).show();
@@ -120,14 +112,15 @@ public class ProfileActivity extends AppCompatActivity implements
         }else{
             Log.d(TAG, "init: inflating Profile");
             ProfileFragment fragment = new ProfileFragment();
-            FragmentTransaction transaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container, fragment);
-            transaction.addToBackStack(getString(R.string.profile_fragment));
-            transaction.commit();
+            String str = "Profile";
+            fragmentTransaction(fragment, str);
         }
-
     }
 
-
-
+    public void fragmentTransaction (Fragment fragment, String str) {
+        FragmentTransaction transaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(str);
+        transaction.commit();
+    }
 }
