@@ -541,8 +541,6 @@ public class FirebaseMethods {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-//                        Log.d(TAG, "email:" + email);
-//                        Log.d(TAG, "pwd:" + password);
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
@@ -558,10 +556,19 @@ public class FirebaseMethods {
 
                             userID = mAuth.getCurrentUser().getUid();
                             Log.d(TAG, "onComplete: Authstate changed: " + userID);
+                            long phone = 123456789;
+                            Log.d(TAG, "Username: " + username);
+                            writeNewUser(userID, username, email, phone);
                         }
 
                     }
                 });
+    }
+
+    private void writeNewUser(String userId, String name, String email, long phone_number) {
+        User user = new User(userId, phone_number, email, name);
+
+        myRef.child("users").child(userId).setValue(user);
     }
 
     public void sendVerificationEmail(){
